@@ -1,15 +1,24 @@
+using Microsoft.EntityFrameworkCore;
+using WebApplication2.Models.Data;
+
 namespace WebApplication2
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
+			var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            builder.Services.AddControllersWithViews();
+			var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+			builder.Services.AddDbContext<AppDBContext>(options =>
+				options.UseSqlServer(connectionString));
+
+			// Add services to the container.
+			builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
+
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
