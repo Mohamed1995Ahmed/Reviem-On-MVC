@@ -1,0 +1,21 @@
+﻿@using WebApplication2.Models.Models
+@model IEnumerable<Department>
+
+<h2>Departments</h2>
+
+<a asp-action="Create">Create New</a>
+
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+        </tr>
+    }
+</table>
