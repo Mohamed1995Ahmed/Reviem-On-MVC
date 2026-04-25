@@ -1,0 +1,27 @@
+﻿@using WebApplication2.Models.Models
+@model Employee
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <input asp-for="Name" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <select asp-for="DepartmentId" asp-items="ViewBag.Departments" class="form-control"></select>
+    </div>
+
+    <!-- show current image -->
+    <div class="mb-3">
+        <img src="@Model.Image" width="100" />
+    </div>
+
+    <!-- upload new image -->
+    <div class="mb-3">
+        <input type="file" name="file" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+
+</form>
