@@ -16,8 +16,9 @@ namespace WebApplication2
 
 			// Add services to the container.
 			builder.Services.AddControllersWithViews();
+			builder.Services.AddHttpClient(); // <-- Required for IHttpClientFactory
 
-            var app = builder.Build();
+			var app = builder.Build();
 
 
             // Configure the HTTP request pipeline.

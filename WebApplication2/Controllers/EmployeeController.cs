@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using WebApplication2.Models.Data;
 using WebApplication2.Models.Models;
+using WebApplication2.VModels;
 
 public class EmployeeController : Controller
 {
@@ -50,7 +51,7 @@ public class EmployeeController : Controller
 	}
 
 	[HttpPost]
-	public async Task<IActionResult> Create(Employee employee, IFormFile file)
+	public async Task<IActionResult> Create(CreateEmployeeVM employee, IFormFile file)
 	{
 		
 			if (file != null && file.Length > 0)
@@ -73,9 +74,14 @@ public class EmployeeController : Controller
 
 				// 🔹 Save path in DB
 				employee.Image = "/images/" + fileName;
-			
+			var emp = new Employee
+			{
+				Name = employee.Name,
+				DepartmentId = employee.DepartmentId,
+				Image = employee.Image
+			};
 
-			_context.Employees.Add(employee);
+			_context.Employees.Add(emp);
 			await _context.SaveChangesAsync();
 
 			return RedirectToAction("Index");

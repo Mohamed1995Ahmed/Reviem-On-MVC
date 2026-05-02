@@ -9,6 +9,7 @@ namespace WebApplication2.Models.Data.Configruations
 		public void Configure(EntityTypeBuilder<Department> builder)
 		{
 			builder.HasKey(x => x.Id);
+			
 		}
 	}
 }
